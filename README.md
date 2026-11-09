@@ -1,74 +1,83 @@
-# SAMIX Telegram Bot
+# 🤖 ربات تلگرام SAMIX
 
-A self-hosted Telegram relay bot with a **web panel** and a hidden **Telegram control panel**. Messages sent to the bot are relayed to the owner (and allowed operators), who can reply right from the web UI or from Telegram.
+<div dir="rtl">
 
-## Features
+یه ربات ریلی تلگرامیه که خودت می‌تونی میزبانی‌اش کنی؛ هم یه **پنل وب** داره هم یه **پنل مخفی داخل تلگرام** 🕵️
+هر کسی به ربات پیام بده، پیامش می‌رسه به تو (و اپراتورهایی که اجازه می‌دی) و می‌تونی هم از پنل وب جواب بدی، هم مستقیم از تلگرام. 😎
 
-- Relay messages from users to the owner and approved operators
-- Web dashboard with login password
-- Hidden Telegram panel via `/samx` (operators) and `/panel` (owner only)
-- Access control: allow / ban / revoke operators
-- Auto-reply, broadcast, scheduled messages
-- Media support (photos, video, voice, documents, stickers, ...)
-- SQLite storage (no external database needed)
+> 🌍 **English version:** [README.en.md](README.en.md)
 
-## Requirements
+---
 
-- Python 3.9+
-- A Telegram bot token from [@BotFather](https://t.me/BotFather)
+## ✨ امکانات
 
-## Setup
+- 📨 انتقال (ریلی) پیام کاربرا به مالک و اپراتورهای تأییدشده
+- 🖥 پنل وب با رمز ورود
+- 🕵️ پنل مخفی تلگرام با دستور `/samx` (اپراتورها) و `/panel` (فقط مالک)
+- 🔐 کنترل دسترسی: تأیید / مسدود / لغو اپراتورها
+- 🤖 پاسخ خودکار، پیام همگانی (برادکست)، پیام زمان‌بندی‌شده
+- 📎 پشتیبانی از عکس، ویدیو، ویس، فایل، استیکر و…
+- 🗄 ذخیره‌سازی با SQLite (بدون نیاز به دیتابیس جدا)
 
-1. Install dependencies:
+## 🧰 پیش‌نیازها
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+- 🐍 پایتون 3.9 به بالا
+- 🔑 توکن ربات از [@BotFather](https://t.me/BotFather)
 
-2. Copy the example env file and fill in your values:
+## ⚙️ راه‌اندازی
 
-   ```bash
-   cp .env.example .env
-   ```
+۱. نصب پیش‌نیازها:
 
-3. Edit `.env`:
+```bash
+pip install -r requirements.txt
+```
 
-   | Variable        | Description                                            |
-   | --------------- | ------------------------------------------------------ |
-   | `BOT_TOKEN`     | Bot token from BotFather                               |
-   | `ADMIN_CHAT_ID` | Your numeric Telegram user ID (the owner)              |
-   | `WEB_PASSWORD`  | Password for the web panel                             |
-   | `WEB_HOST`      | Bind address (default `0.0.0.0`)                       |
-   | `WEB_PORT`      | Web port (default `8080`, or `PORT` env on hosts)      |
-   | `DATA_DIR`      | Folder for the database/data (default: project folder) |
-   | `SAVE_HISTORY`  | `1` to keep chat history, `0` for RAM only             |
+۲. فایل نمونه تنظیمات رو کپی کن:
 
-4. Run the bot:
+```bash
+cp .env.example .env
+```
 
-   ```bash
-   python relay_web.py
-   ```
+۳. فایل `.env` رو باز کن و مقدارها رو بذار:
 
-5. Open the web panel at `http://localhost:8080` and log in with `WEB_PASSWORD`.
+| متغیر | توضیح |
+| --- | --- |
+| `BOT_TOKEN` | توکن ربات از BotFather |
+| `ADMIN_CHAT_ID` | آیدی عددی تلگرام خودت (مالک) |
+| `WEB_PASSWORD` | رمز ورود پنل وب |
+| `WEB_HOST` | آدرس بایند (پیش‌فرض `0.0.0.0`) |
+| `WEB_PORT` | پورت وب (پیش‌فرض `8080`، یا `PORT` روی هاست‌ها) |
+| `DATA_DIR` | مسیر دیتابیس و داده‌ها (پیش‌فرض: پوشه پروژه) |
+| `SAVE_HISTORY` | `1` برای نگه‌داشتن تاریخچه چت، `0` فقط در حافظه |
 
-## Telegram panel
+۴. ربات رو اجرا کن:
 
-- Send `/samx` to the bot to open the operator panel.
-- The owner can use `/panel` for full control (users, settings, broadcast, schedules).
+```bash
+python relay_web.py
+```
 
-## Deploy on Railway
+۵. برو به `http://localhost:8080` و با `WEB_PASSWORD` وارد شو. 🚀
 
-1. Push this repo to GitHub.
-2. Create a new project on [Railway](https://railway.app) from the repo.
-3. Add the environment variables from the table above in the Railway dashboard.
-4. Set `DATA_DIR=/data` and attach a volume at `/data` for persistent storage.
+## 🕹 پنل تلگرام
 
-## Security
+- برای پنل اپراتور، دستور `/samx` رو به ربات بفرست.
+- مالک می‌تونه با `/panel` کنترل کامل داشته باشه (کاربرا، تنظیمات، برادکست، زمان‌بندی).
 
-- **Never commit your `.env`** — it is already in `.gitignore`.
-- Keep `BOT_TOKEN` and `WEB_PASSWORD` secret.
-- Put the web panel behind HTTPS / a reverse proxy when exposed publicly.
+## ☁️ دیپلوی روی Railway
 
-## License
+۱. ریپو رو روی گیت‌هاب بذار.
+۲. تو [Railway](https://railway.app) یه پروژه جدید از همین ریپو بساز.
+۳. متغیرهای محیطی جدول بالا رو تو داشبورد Railway اضافه کن.
+۴. `DATA_DIR=/data` رو ست کن و یه والیوم روی `/data` وصل کن تا دیتا بعد از ری‌استارت هم بمونه.
+
+## 🔒 امنیت
+
+- ⚠️ هیچ‌وقت فایل `.env` رو کامیت نکن (الان تو `.gitignore` هست).
+- `BOT_TOKEN` و `WEB_PASSWORD` رو محرمانه نگه دار.
+- اگه پنل وب رو عمومی باز کردی، حتماً پشت HTTPS / ریورس‌پراکسی باشه.
+
+## 📄 لایسنس
 
 MIT
+
+</div>
