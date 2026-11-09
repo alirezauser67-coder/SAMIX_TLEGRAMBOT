@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Environment / secrets (never commit real keys)
+.env
+.env.*
+!.env.example
+
+# Runtime data / database (user chats, settings, history)
+*.db
+*.db-shm
+*.db-wal
+relay.db
+relay.db-shm
+relay.db-wal
+history.json
+settings.json
+access.json
+schedules.json
+
+# Logs
+*.log
+railway.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
